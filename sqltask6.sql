@@ -75,13 +75,14 @@ VALUES
   (8, 5, 1, 1, 999),
   (9, 5, 3, 1, 799);
 
- 
+ --Extracting Month (and Year) from order_date
+
  SELECT 
   EXTRACT(YEAR FROM order_date) AS order_year,
   EXTRACT(MONTH FROM order_date) AS order_month
 FROM orders;
 
-
+--Order Volume (Distinct Order Count) Per Month
 SELECT 
   EXTRACT(YEAR FROM order_date) AS order_year,
   EXTRACT(MONTH FROM order_date) AS order_month,
@@ -89,6 +90,8 @@ SELECT
 FROM orders
 GROUP BY order_year, order_month
 ORDER BY order_year, order_month;
+
+-- Revenue & Volume Together Per Month
 
 SELECT 
   EXTRACT(YEAR FROM order_date) AS order_year,
@@ -99,6 +102,8 @@ FROM orders
 GROUP BY order_year, order_month
 ORDER BY order_year, order_month;
 
+--Sorting by Highest Revenue Month
+ 
 SELECT 
   EXTRACT(YEAR FROM order_date) AS order_year,
   EXTRACT(MONTH FROM order_date) AS order_month,
@@ -107,6 +112,7 @@ FROM orders
 GROUP BY order_year, order_month
 ORDER BY monthly_revenue DESC;
 
+--Filter for Specific Time Period
 SELECT 
   EXTRACT(YEAR FROM o.order_date) AS order_year,
   EXTRACT(MONTH FROM o.order_date) AS order_month,
